@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" data-scheme="{{ settings.color_scheme_default }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.color_ink }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- render 'meta-tags' -%}
+
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap">
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+
+    <style>
+      :root {
+        --color-ink: {{ settings.color_ink }};
+        --color-cream: {{ settings.color_cream }};
+        --color-cream-2: {{ settings.color_cream_2 }};
+        --color-forest: {{ settings.color_forest }};
+        --color-ash: {{ settings.color_ash }};
+        --color-charcoal: {{ settings.color_charcoal }};
+        --container-max: {{ settings.container_max_width }}px;
+        --edge-mobile: {{ settings.edge_padding_mobile }}px;
+        --edge-desktop: {{ settings.edge_padding_desktop }}px;
+        --type-base: {{ settings.type_base_size }}px;
+        --type-heading-scale: {{ settings.type_heading_scale | divided_by: 100.0 }};
+        --motion-micro: {{ settings.motion_duration_micro }}ms;
+        --motion-hero: {{ settings.motion_duration_hero }}ms;
+        --easing: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      [data-scheme="dark"] {
+        --bg: var(--color-ink);
+        --fg: var(--color-cream);
+      }
+      [data-scheme="light"] {
+        --bg: var(--color-cream);
+        --fg: var(--color-ink);
+      }
+    </style>
+
+    <script>
+      window.theme = {
+        routes: {
+          cart_add_url: '{{ routes.cart_add_url }}',
+          cart_change_url: '{{ routes.cart_change_url }}',
+          cart_update_url: '{{ routes.cart_update_url }}',
+          cart_url: '{{ routes.cart_url }}',
+          predictive_search_url: '{{ routes.predictive_search_url }}'
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        cartType: {{ settings.cart_type | json }}
+      };
+    </script>
+
+    {%- render 'json-ld-organization' -%}
+  </head>
+
+  <body class="template-{{ template | replace: '.', '-' | handle }}">
+    <a class="skip-link visually-hidden" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    <script src="{{ 'base.js' | asset_url }}" defer></script>
+    {%- if settings.cart_type == 'drawer' -%}
+      <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+    {%- endif -%}
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<section class="container section">
+  <header style="margin-bottom:3rem;">
+    <p class="text-meta" style="margin-bottom:1rem;">SEARCH — RESULTS</p>
+    <h1 style="font-size:clamp(2rem,4vw,3rem);" data-animate>
+      {%- if search.performed -%}{{ 'search.title_with_terms' | t: terms: search.terms, count: search.results_count }}{%- else -%}{{ 'search.title' | t }}{%- endif -%}
+    </h1>
+  </header>
+
+  <form action="{{ routes.search_url }}" method="get" style="margin-bottom:3rem;max-width:480px;">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" class="input" autofocus>
+  </form>
+
+  {%- if search.performed -%}
+    {%- if search.results.size > 0 -%}
+      <div class="product-grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item %}
+          {%- else -%}
+            <article class="product-card">
+              <a href="{{ item.url }}" class="product-card__info">
+                <p class="text-meta">{{ item.object_type | upcase }}</p>
+                <h3 class="product-card__title">{{ item.title }}</h3>
+              </a>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="muted">{{ 'search.no_results' | t: terms: search.terms }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

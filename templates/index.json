@@ -1,0 +1,133 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "A premium fitness lifestyle brand",
+        "title": "<p>Her <em>Flow.</em> His <em>Fire.</em> Their <em>Joy.</em></p>",
+        "body": "Three energies under one roof. Pieces designed for movement, breath, and play — for the people who carry the rhythm of the day.",
+        "cta_label": "Discover the universe",
+        "meta_rotator": "EN → Arriving October 2026.|FR → Disponible Octobre 2026.|ES → Llegada Octubre 2026."
+      }
+    },
+    "universes": {
+      "type": "universe-cards",
+      "settings": {
+        "eyebrow": "THREE — UNIVERSES",
+        "heading": "<p>One brand, <em>three</em> rhythms.</p>"
+      },
+      "blocks": {
+        "her": {
+          "type": "universe",
+          "settings": {
+            "meta_left": "00 — IRO HER",
+            "meta_right": "IROfit",
+            "word": "Flow",
+            "tagline": "Her Flow.",
+            "body": "Pilates, yoga, breath. Quiet pieces for movement that listens.",
+            "pieces": "Socks · Ring · Bands · Ball",
+            "palette": "#F5F0EB,#2D4132,#807468",
+            "status": "First drop · October 2026",
+            "theme": "her"
+          }
+        },
+        "him": {
+          "type": "universe",
+          "settings": {
+            "meta_left": "01 — IRO HIM",
+            "meta_right": "IROfit",
+            "word": "Fire",
+            "tagline": "His Fire.",
+            "body": "Iron, miles, breath under load. Built for honest training.",
+            "pieces": "Straps · Belt · Sleeves · Towel",
+            "palette": "#1A1612,#3A332C,#F5F0EB",
+            "status": "Phase I · October 2026",
+            "theme": "neutral"
+          }
+        },
+        "kids": {
+          "type": "universe",
+          "settings": {
+            "meta_left": "02 — IRO KIDS",
+            "meta_right": "IROfit",
+            "word": "Joy",
+            "tagline": "Their Joy.",
+            "body": "Play, rhythm, repeat. For little bodies in motion.",
+            "pieces": "Bands · Ball · Ring · Set",
+            "palette": "#F5F0EB,#2D4132,#3A332C",
+            "status": "Phase II · 2027",
+            "theme": "neutral"
+          }
+        }
+      },
+      "block_order": ["her", "him", "kids"]
+    },
+    "first-drop": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "FIRST DROP — IRO HER",
+        "heading": "<p>Quiet <em>essentials</em>.</p>",
+        "limit": 8
+      }
+    },
+    "editorial": {
+      "type": "editorial-section",
+      "settings": {
+        "eyebrow": "ABOUT — THE STORY",
+        "heading": "<p>A studio for movement — <em>and breath</em>.</p>",
+        "body": "<p>IROfit was born between Paris and the sea. Three energies — soft, strong, joyful — under one quiet wordmark.</p>",
+        "cta_label": "Read the story",
+        "flipped": false
+      }
+    },
+    "lookbook": {
+      "type": "lookbook",
+      "settings": {
+        "eyebrow": "EDITORIAL — SHOPPABLE",
+        "heading": "<p>The look, <em>tapped</em>.</p>"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "PRESS — REVIEWS",
+        "heading": "<p>What they're <em>saying</em>.</p>"
+      },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "quote": "Quietly built. The kind of pieces you reach for without thinking.", "author": "Vogue Paris" } },
+        "t2": { "type": "testimonial", "settings": { "quote": "A new definition of premium wellness — slow, intentional, beautiful.", "author": "L'Officiel" } },
+        "t3": { "type": "testimonial", "settings": { "quote": "Three energies, one signature. Hard to look away.", "author": "Numéro" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "email": {
+      "type": "email-capture",
+      "settings": {
+        "style": "banner",
+        "eyebrow": "STAY IN — FLOW",
+        "heading": "<p>First <em>access</em>.</p>",
+        "body": "Quiet drops, studio notes, and the launch in October 2026."
+      }
+    },
+    "popup": {
+      "type": "email-capture",
+      "settings": {
+        "style": "popup",
+        "eyebrow": "STAY IN — FLOW",
+        "heading": "Three Beats. One Rhythm.",
+        "body": "Subscribe for first access to the October drop.",
+        "popup_delay": 14
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "universes",
+    "first-drop",
+    "editorial",
+    "lookbook",
+    "testimonials",
+    "email",
+    "popup"
+  ]
+}

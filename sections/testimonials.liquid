@@ -1,0 +1,50 @@
+<section class="section">
+  <div class="container">
+    <header style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:3rem;">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow" data-animate>{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 data-animate style="--animate-delay:80ms;">{{ section.settings.heading }}</h2>
+    </header>
+    <div class="testimonials">
+      {%- for block in section.blocks -%}
+        {%- assign delay = forloop.index0 | times: 120 -%}
+        <figure class="testimonial" {{ block.shopify_attributes }} data-animate style="--animate-delay:{{ delay }}ms;">
+          <blockquote class="testimonial__quote">{{ block.settings.quote }}</blockquote>
+          <figcaption class="testimonial__source">— {{ block.settings.author }}</figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRESS — REVIEWS" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>What they're <em>saying</em>.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Quietly built. The kind of pieces you reach for without thinking." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Vogue Paris" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

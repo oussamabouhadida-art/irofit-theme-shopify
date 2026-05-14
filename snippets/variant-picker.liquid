@@ -1,0 +1,53 @@
+{%- liquid
+  assign product_json = product | json
+-%}
+
+<div class="variant-picker" data-variant-picker data-product='{{ product_json | escape }}'>
+  {%- for option in product.options_with_values -%}
+    {%- assign downcase_name = option.name | downcase -%}
+    {%- assign is_color = false -%}
+    {%- if downcase_name contains 'color' or downcase_name contains 'colour' or downcase_name contains 'couleur' -%}
+      {%- assign is_color = true -%}
+    {%- endif -%}
+    <div class="product__variant-group" data-option-group data-option-name="{{ option.name | escape }}">
+      <div class="product__variant-label">
+        {{ option.name }}<span class="muted" data-current-option> · {{ option.selected_value }}</span>
+      </div>
+      {%- if is_color -%}
+        <div class="variant-swatches" role="radiogroup" aria-label="{{ option.name }}">
+          {%- for value in option.values -%}
+            {%- assign checked = false -%}
+            {%- if option.selected_value == value -%}{%- assign checked = true -%}{%- endif -%}
+            <button
+              type="button"
+              class="variant-swatch"
+              data-option-value
+              data-value="{{ value | escape }}"
+              role="radio"
+              aria-checked="{{ checked }}"
+              aria-label="{{ option.name }}: {{ value }}"
+              title="{{ value }}"
+              style="background:{{ value | handle }};">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="variant-sizes" role="radiogroup" aria-label="{{ option.name }}">
+          {%- for value in option.values -%}
+            {%- assign checked = false -%}
+            {%- if option.selected_value == value -%}{%- assign checked = true -%}{%- endif -%}
+            <button
+              type="button"
+              class="variant-size"
+              data-option-value
+              data-value="{{ value | escape }}"
+              role="radio"
+              aria-checked="{{ checked }}">
+              {{ value }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>

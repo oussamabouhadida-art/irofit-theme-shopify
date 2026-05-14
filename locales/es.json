@@ -1,0 +1,127 @@
+{
+  "general": {
+    "meta": { "tags": "Etiquetas: {{ tags }}", "page": "Página {{ page }}" },
+    "header": { "open_menu": "Abrir menú", "close_menu": "Cerrar menú", "close": "Cerrar" },
+    "search": { "title": "Buscar", "placeholder": "Buscar", "no_results": "Sin resultados para «{{ terms }}»." },
+    "newsletter": { "email_placeholder": "Tu email", "submit": "Unirme", "success": "Gracias. Pronto en contacto." },
+    "pagination": { "previous": "Anterior", "next": "Siguiente" },
+    "breadcrumb": { "home": "Inicio" },
+    "password_page": {
+      "opening_soon": "Llegada octubre 2026.",
+      "password_placeholder": "Contraseña",
+      "submit": "Entrar",
+      "admin_login": "Acceso admin"
+    },
+    "404": {
+      "message": "Esta página está fuera de ritmo. Volvamos al flow.",
+      "cta": "Volver al inicio"
+    }
+  },
+  "sections": {
+    "announcement": { "label": "Anuncio" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Añadir al carrito",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "choose_options": "Elegir opciones",
+      "on_sale": "Rebajas",
+      "new": "Nuevo",
+      "best_seller": "Top",
+      "low_stock": "Pocas unidades",
+      "media_gallery": "Galería"
+    }
+  },
+  "collections": {
+    "general": {
+      "items": "piezas",
+      "no_matches": "Sin resultados. Ajusta los filtros.",
+      "view_all": "Ver todo"
+    },
+    "sorting": { "title": "Ordenar" }
+  },
+  "cart": {
+    "general": {
+      "title": "Carrito",
+      "close": "Cerrar",
+      "empty": "Tu carrito está vacío.",
+      "continue_shopping": "Seguir comprando",
+      "subtotal": "Subtotal",
+      "taxes_note": "Impuestos incluidos. Envío al pagar.",
+      "checkout": "Pagar",
+      "update": "Actualizar",
+      "upsells": "Completa el look"
+    },
+    "label": {
+      "product": "Producto",
+      "price": "Precio",
+      "quantity": "Cantidad",
+      "total": "Total"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Cuenta",
+      "welcome": "Hola {{ name }}.",
+      "logout": "Cerrar sesión"
+    },
+    "orders": {
+      "title": "Pedidos",
+      "none": "Aún no hay pedidos.",
+      "order_number": "Pedido",
+      "date": "Fecha",
+      "payment_status": "Pago",
+      "fulfillment_status": "Envío",
+      "total": "Total"
+    },
+    "addresses": { "title": "Direcciones", "manage": "Gestionar direcciones" },
+    "order": {
+      "title": "Pedido {{ name }}",
+      "back": "Volver a la cuenta",
+      "items": "Artículos",
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "tax": "IVA",
+      "total": "Total",
+      "shipping_address": "Dirección de envío",
+      "tracking": "Seguimiento"
+    },
+    "login": {
+      "title": "Acceder",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Entrar",
+      "forgot": "Contraseña olvidada",
+      "create": "Crear cuenta"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Registrarme"
+    }
+  },
+  "blogs": {
+    "comments": {
+      "title": "Comentarios",
+      "name": "Nombre",
+      "message": "Mensaje",
+      "submit": "Publicar"
+    }
+  },
+  "search": {
+    "title": "Buscar",
+    "title_with_terms": "{{ count }} resultados para «{{ terms }}»",
+    "no_results": "Sin resultados para «{{ terms }}».",
+    "placeholder": "Buscar"
+  },
+  "accessibility": {
+    "skip_to_content": "Saltar al contenido"
+  },
+  "onboarding": {
+    "product_title": "Nombre del producto"
+  }
+}

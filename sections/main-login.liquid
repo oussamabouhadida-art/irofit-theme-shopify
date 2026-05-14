@@ -1,0 +1,27 @@
+<section class="container section" style="max-width:540px;">
+  <h1 class="account__title" style="margin-bottom:2rem;">{{ 'customer.login.title' | t }}</h1>
+
+  {% form 'customer_login' %}
+    {{ form.errors | default_errors }}
+    <div class="field" style="margin-bottom:1.5rem;">
+      <label class="field__label" for="email">{{ 'customer.login.email' | t }}</label>
+      <input type="email" id="email" name="customer[email]" required class="input" autocomplete="email">
+    </div>
+    <div class="field" style="margin-bottom:2rem;">
+      <label class="field__label" for="password">{{ 'customer.login.password' | t }}</label>
+      <input type="password" id="password" name="customer[password]" required class="input" autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn btn--filled btn--block">{{ 'customer.login.submit' | t }} →</button>
+  {% endform %}
+
+  <p style="margin-top:2rem;">
+    <a href="{{ routes.account_recover_url }}" class="link-inline">{{ 'customer.login.forgot' | t }} →</a>
+  </p>
+  <p style="margin-top:1rem;">
+    <a href="{{ routes.account_register_url }}" class="link-inline">{{ 'customer.login.create' | t }} →</a>
+  </p>
+</section>
+
+{% schema %}
+{ "name": "Login", "settings": [] }
+{% endschema %}

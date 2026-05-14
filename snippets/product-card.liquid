@@ -1,0 +1,57 @@
+{%- liquid
+  assign card_product = product
+  assign show_quick_add = show_quick_add | default: settings.product_quick_add
+  assign show_swatches = show_swatches | default: true
+-%}
+
+<article class="product-card" data-animate>
+  <a href="{{ card_product.url }}" class="product-card__media aspect-portrait" aria-label="{{ card_product.title | escape }}">
+    {%- if card_product.featured_media -%}
+      <img
+        src="{{ card_product.featured_media | image_url: width: 600 }}"
+        srcset="{{ card_product.featured_media | image_url: width: 400 }} 400w, {{ card_product.featured_media | image_url: width: 600 }} 600w, {{ card_product.featured_media | image_url: width: 900 }} 900w"
+        sizes="(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 50vw"
+        alt="{{ card_product.featured_media.alt | escape }}"
+        loading="lazy"
+        width="600"
+        height="800">
+    {%- endif -%}
+
+    <div class="product-card__badges">
+      {% render 'product-badge', product: card_product %}
+    </div>
+  </a>
+
+  {%- if show_quick_add and card_product.available -%}
+    <div class="product-card__quick">
+      {% render 'quick-add', product: card_product %}
+    </div>
+  {%- endif -%}
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+    </h3>
+
+    {%- if show_swatches -%}
+      {%- assign color_option = null -%}
+      {%- for option in card_product.options_with_values -%}
+        {%- assign downcase_name = option.name | downcase -%}
+        {%- if downcase_name contains 'color' or downcase_name contains 'colour' or downcase_name contains 'couleur' -%}
+          {%- assign color_option = option -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if color_option -%}
+        <div class="product-card__swatches" aria-label="Available colors">
+          {%- for value in color_option.values limit: 5 -%}
+            <span class="product-card__swatch" style="background:{{ value | handle }};" title="{{ value }}"></span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="product-card__price">
+      {% render 'price', product: card_product, use_variant: false %}
+    </div>
+  </div>
+</article>

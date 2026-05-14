@@ -1,0 +1,27 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg-1": {
+          "type": "message",
+          "settings": {
+            "text": "Free shipping over €80 — Arriving October 2026"
+          }
+        }
+      },
+      "block_order": ["msg-1"]
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "sticky": true,
+        "transparent": true
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

@@ -1,0 +1,53 @@
+{%- liquid
+  assign t = template.name | default: 'index'
+-%}
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+  {%- case t -%}
+    {%- when 'collection' -%}
+      <span class="breadcrumb__sep">/</span>
+      <span aria-current="page">{{ collection.title }}</span>
+    {%- when 'product' -%}
+      {%- if collection -%}
+        <span class="breadcrumb__sep">/</span>
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+      {%- endif -%}
+      <span class="breadcrumb__sep">/</span>
+      <span aria-current="page">{{ product.title }}</span>
+    {%- when 'article' -%}
+      <span class="breadcrumb__sep">/</span>
+      <a href="{{ blog.url }}">{{ blog.title }}</a>
+      <span class="breadcrumb__sep">/</span>
+      <span aria-current="page">{{ article.title }}</span>
+    {%- when 'page' -%}
+      <span class="breadcrumb__sep">/</span>
+      <span aria-current="page">{{ page.title }}</span>
+    {%- when 'blog' -%}
+      <span class="breadcrumb__sep">/</span>
+      <span aria-current="page">{{ blog.title }}</span>
+  {%- endcase -%}
+</nav>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": {{ 'general.breadcrumb.home' | t | json }}, "item": {{ shop.url | json }} }
+    {%- case t -%}
+      {%- when 'collection' -%}
+        ,{ "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ shop.url | append: collection.url | json }} }
+      {%- when 'product' -%}
+        {%- if collection -%}
+          ,{ "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ shop.url | append: collection.url | json }} },
+          { "@type": "ListItem", "position": 3, "name": {{ product.title | json }}, "item": {{ shop.url | append: product.url | json }} }
+        {%- else -%}
+          ,{ "@type": "ListItem", "position": 2, "name": {{ product.title | json }}, "item": {{ shop.url | append: product.url | json }} }
+        {%- endif -%}
+      {%- when 'article' -%}
+        ,{ "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": {{ shop.url | append: blog.url | json }} },
+        { "@type": "ListItem", "position": 3, "name": {{ article.title | json }}, "item": {{ shop.url | append: article.url | json }} }
+    {%- endcase -%}
+  ]
+}
+</script>

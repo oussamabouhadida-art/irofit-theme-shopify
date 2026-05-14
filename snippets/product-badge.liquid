@@ -1,0 +1,54 @@
+{%- liquid
+  unless settings.product_badges_enabled
+    break
+  endunless
+
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+
+  assign sold_out = false
+  unless product.available
+    assign sold_out = true
+  endunless
+
+  assign low_stock = false
+  assign total_stock = 0
+  for v in product.variants
+    if v.inventory_management == 'shopify' and v.inventory_quantity > 0
+      assign total_stock = total_stock | plus: v.inventory_quantity
+    endif
+  endfor
+  if total_stock > 0 and total_stock <= settings.low_stock_threshold
+    assign low_stock = true
+  endif
+
+  assign is_new = false
+  if product.tags contains 'new' or product.tags contains 'New'
+    assign is_new = true
+  endif
+
+  assign is_best = false
+  if product.tags contains 'best-seller' or product.tags contains 'bestseller'
+    assign is_best = true
+  endif
+-%}
+
+{%- if sold_out -%}
+  <span class="badge badge--ghost">{{ 'products.product.sold_out' | t }}</span>
+{%- elsif on_sale -%}
+  <span class="badge">{{ 'products.product.on_sale' | t }}</span>
+{%- endif -%}
+
+{%- if is_new -%}
+  <span class="badge badge--ghost">{{ 'products.product.new' | t }}</span>
+{%- endif -%}
+
+{%- if is_best -%}
+  <span class="badge badge--forest">{{ 'products.product.best_seller' | t }}</span>
+{%- endif -%}
+
+{%- if low_stock and product.available -%}
+  <span class="badge badge--ash">{{ 'products.product.low_stock' | t }}</span>
+{%- endif -%}

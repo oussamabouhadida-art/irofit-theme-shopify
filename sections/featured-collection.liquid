@@ -1,0 +1,61 @@
+{%- liquid
+  assign featured = collections[section.settings.collection]
+  assign limit = section.settings.limit | default: 8
+-%}
+
+<section class="section">
+  <div class="container">
+    <header style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:3rem;">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow" data-animate>{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;">
+        <h2 data-animate style="--animate-delay:80ms;">{{ section.settings.heading }}</h2>
+        {%- if featured -%}
+          <a href="{{ featured.url }}" class="link-inline">{{ 'collections.general.view_all' | t }} →</a>
+        {%- endif -%}
+      </div>
+    </header>
+
+    <div class="product-grid">
+      {%- if featured and featured.products.size > 0 -%}
+        {%- for product in featured.products limit: limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..limit) -%}
+          <article class="product-card">
+            <div class="product-card__media aspect-portrait" style="background:rgba(245,240,235,0.04);"></div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">{{ 'onboarding.product_title' | t }}</h3>
+              <p class="product-card__price">€—</p>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FIRST DROP — IRO HER" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Quiet <em>essentials</em>.</p>" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "label": "Products to show",
+      "default": 8
+    }
+  ],
+  "presets": [
+    { "name": "Featured collection", "category": "Collection" }
+  ]
+}
+{% endschema %}

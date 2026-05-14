@@ -1,0 +1,14 @@
+<section class="page-404">
+  <p class="eyebrow" data-animate>404 — NOT FOUND</p>
+  <h1 class="page-404__title" data-animate style="--animate-delay:80ms;">
+    Out of <em>rhythm</em>.
+  </h1>
+  <p class="muted" style="max-width:480px;margin:0 auto 2rem;" data-animate style="--animate-delay:160ms;">
+    {{ 'general.404.message' | t }}
+  </p>
+  <a href="{{ routes.root_url }}" class="btn">{{ 'general.404.cta' | t }} →</a>
+</section>
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

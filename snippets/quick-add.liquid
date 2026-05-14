@@ -1,0 +1,20 @@
+{%- liquid
+  assign quick_variant = product.selected_or_first_available_variant
+  assign has_variants = false
+  if product.variants.size > 1
+    assign has_variants = true
+  endif
+-%}
+
+{%- if has_variants -%}
+  <a href="{{ product.url }}" class="btn btn--filled btn--block">
+    {{ 'products.product.choose_options' | t }} →
+  </a>
+{%- else -%}
+  <form method="post" action="{{ routes.cart_add_url }}">
+    <input type="hidden" name="id" value="{{ quick_variant.id }}">
+    <button type="submit" class="btn btn--filled btn--block" data-atc-btn>
+      <span data-atc-label>{{ 'products.product.add_to_cart' | t }}</span> →
+    </button>
+  </form>
+{%- endif -%}

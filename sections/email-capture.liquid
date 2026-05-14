@@ -1,0 +1,69 @@
+{%- liquid
+  assign style = section.settings.style
+-%}
+
+{%- if style == 'banner' -%}
+  <section class="section">
+    <div class="container">
+      <div class="email-capture" data-animate>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" style="margin-bottom:1.5rem;">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="email-capture__title">{{ section.settings.heading }}</h2>
+        <p class="email-capture__body">{{ section.settings.body }}</p>
+        {% form 'customer', class: 'email-capture__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" required class="input" placeholder="{{ 'general.newsletter.email_placeholder' | t }}" aria-label="Email">
+          <button type="submit" class="btn">{{ 'general.newsletter.submit' | t }} →</button>
+          {{ form.errors | default_errors }}
+          {%- if form.posted_successfully? -%}
+            <p class="text-meta" style="margin-top:0.75rem;width:100%;">{{ 'general.newsletter.success' | t }}</p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+    </div>
+  </section>
+{%- else -%}
+  <aside class="email-popup" data-email-popup data-delay="{{ section.settings.popup_delay | default: 12 }}" aria-label="Newsletter">
+    <button type="button" class="email-popup__close" data-email-popup-close aria-label="Close">×</button>
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="eyebrow" style="margin-bottom:1rem;">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h3 style="font-size:1.5rem;margin-bottom:0.75rem;">{{ section.settings.heading }}</h3>
+    <p style="color:rgba(245,240,235,0.7);margin-bottom:1.25rem;font-size:14px;">{{ section.settings.body }}</p>
+    {% form 'customer', class: 'email-capture__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter,popup">
+      <input type="email" name="contact[email]" required class="input" placeholder="{{ 'general.newsletter.email_placeholder' | t }}" aria-label="Email">
+      <button type="submit" class="btn" style="margin-top:0.75rem;width:100%;">{{ 'general.newsletter.submit' | t }} →</button>
+      {{ form.errors | default_errors }}
+      {%- if form.posted_successfully? -%}
+        <p class="text-meta" style="margin-top:0.75rem;">{{ 'general.newsletter.success' | t }}</p>
+      {%- endif -%}
+    {% endform %}
+  </aside>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Email capture",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "banner", "label": "Banner section" },
+        { "value": "popup", "label": "Popup" }
+      ],
+      "default": "banner"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "STAY IN — FLOW" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>First <em>access</em>.</p>" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Quiet drops, studio notes, and the launch in October 2026." },
+    { "type": "range", "id": "popup_delay", "min": 4, "max": 30, "step": 1, "unit": "s", "label": "Popup delay", "default": 12 }
+  ],
+  "presets": [
+    { "name": "Email capture", "category": "Marketing" }
+  ]
+}
+{% endschema %}

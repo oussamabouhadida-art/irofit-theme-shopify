@@ -1,0 +1,50 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="announcement-bar" role="region" aria-label="{{ 'sections.announcement.label' | t }}">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.link != blank -%}
+        <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+      {%- else -%}
+        <span>{{ block.settings.text }}</span>
+      {%- endif -%}
+      {%- unless forloop.last -%} · {%- endunless -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "max_blocks": 3,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping over €80 — Arriving October 2026"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "message" }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

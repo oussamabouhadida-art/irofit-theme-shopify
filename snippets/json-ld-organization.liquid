@@ -1,0 +1,23 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ settings.organization_name | default: shop.name | json }},
+  "legalName": {{ settings.organization_legal_name | default: shop.name | json }},
+  "url": {{ shop.url | json }},
+  {%- if settings.organization_logo != blank -%}
+  "logo": {{ settings.organization_logo | image_url: width: 600 | prepend: 'https:' | json }},
+  {%- endif -%}
+  "sameAs": [
+    {%- if settings.social_instagram != blank -%}{{ settings.social_instagram | json }}{%- endif -%}
+    {%- if settings.social_tiktok != blank -%},{{ settings.social_tiktok | json }}{%- endif -%}
+    {%- if settings.social_youtube != blank -%},{{ settings.social_youtube | json }}{%- endif -%}
+    {%- if settings.social_pinterest != blank -%},{{ settings.social_pinterest | json }}{%- endif -%}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "team@irofit.fr",
+    "contactType": "customer support"
+  }
+}
+</script>

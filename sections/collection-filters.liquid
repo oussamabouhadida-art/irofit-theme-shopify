@@ -1,0 +1,96 @@
+{% render 'breadcrumb' %}
+
+<section class="container" style="padding-top:2rem;">
+  <header style="margin-bottom:2rem;display:flex;flex-direction:column;gap:0.75rem;">
+    {%- if collection.metafields.theme.eyebrow != blank -%}
+      <p class="eyebrow">{{ collection.metafields.theme.eyebrow }}</p>
+    {%- else -%}
+      <p class="eyebrow">COLLECTION — {{ collection.products_count }} {{ 'collections.general.items' | t }}</p>
+    {%- endif -%}
+    <h1 style="font-size:clamp(2.25rem,4vw,3.25rem);" data-animate>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p style="max-width:640px;color:rgba(245,240,235,0.75);" data-animate style="--animate-delay:80ms;">{{ collection.description }}</p>
+    {%- endif -%}
+  </header>
+
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <form data-collection-filters method="get">
+      <div class="collection-toolbar">
+        <span class="collection-toolbar__count">
+          {{ collection.products_count }} {{ 'collections.general.items' | t }}
+        </span>
+
+        <div class="collection-filters">
+          {%- for filter in collection.filters -%}
+            <details class="collection-filter">
+              <summary>{{ filter.label }} ↓</summary>
+              <div class="collection-filter__panel">
+                {%- case filter.type -%}
+                  {%- when 'list' or 'boolean' -%}
+                    {%- for value in filter.values -%}
+                      <label class="collection-filter__option">
+                        <input
+                          type="checkbox"
+                          name="{{ value.param_name }}"
+                          value="{{ value.value }}"
+                          {% if value.active %}checked{% endif %}
+                          {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                        <span>{{ value.label }} <span class="muted">({{ value.count }})</span></span>
+                      </label>
+                    {%- endfor -%}
+                  {%- when 'price_range' -%}
+                    <div style="display:flex;gap:0.5rem;">
+                      <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="Min" class="input" inputmode="numeric">
+                      <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="Max" class="input" inputmode="numeric">
+                    </div>
+                {%- endcase -%}
+              </div>
+            </details>
+          {%- endfor -%}
+
+          <details class="collection-filter">
+            <summary>{{ 'collections.sorting.title' | t }} ↓</summary>
+            <div class="collection-filter__panel">
+              {%- assign sort_options = collection.sort_options -%}
+              {%- for option in sort_options -%}
+                <label class="collection-filter__option">
+                  <input type="radio" name="sort_by" value="{{ option.value }}" {% if collection.sort_by == option.value %}checked{% elsif collection.sort_by == blank and option.value == collection.default_sort_by %}checked{% endif %}>
+                  <span>{{ option.name }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </details>
+        </div>
+      </div>
+    </form>
+
+    <div data-collection-results data-section-id="{{ section.id }}">
+      <div class="product-grid">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- else -%}
+          <p class="muted" style="grid-column:1/-1;text-align:center;padding:4rem 0;">{{ 'collections.general.no_matches' | t }}</p>
+        {%- endfor -%}
+      </div>
+
+      {% render 'pagination', paginate: paginate %}
+    </div>
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collection filters",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "label": "Products per page",
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

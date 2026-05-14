@@ -1,0 +1,113 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col">
+        <h5>{{ shop.name }}</h5>
+        <p class="text-italic" style="font-size:1.25rem;line-height:1.5;max-width:280px;">
+          {{ section.settings.tagline | default: 'Her Flow. His Fire. Their Joy.' }}
+        </p>
+        {%- if section.settings.email != blank -%}
+          <p style="margin-top:1.5rem;">
+            <a href="mailto:{{ section.settings.email }}" class="text-meta">{{ section.settings.email }}</a>
+          </p>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            <div class="site-footer__col" {{ block.shopify_attributes }}>
+              <h5>{{ block.settings.heading }}</h5>
+              {%- assign block_menu = linklists[block.settings.menu] -%}
+              {%- if block_menu != blank -%}
+                <ul>
+                  {%- for link in block_menu.links -%}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- when 'newsletter' -%}
+            <div class="site-footer__col" {{ block.shopify_attributes }}>
+              <h5>{{ block.settings.heading }}</h5>
+              <p class="text-meta" style="margin-bottom:1rem;font-size:11px;letter-spacing:0.18em;">
+                {{ block.settings.body }}
+              </p>
+              {%- form 'customer', class: 'email-capture__form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input type="email" name="contact[email]" required class="input" placeholder="{{ 'general.newsletter.email_placeholder' | t }}" aria-label="Email">
+                <button type="submit" class="btn">→</button>
+                {{ form.errors | default_errors }}
+                {%- if form.posted_successfully? -%}
+                  <p class="text-meta" style="margin-top:0.75rem;">{{ 'general.newsletter.success' | t }}</p>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="site-footer__bar">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <em>{{ section.settings.tagline | default: 'Three Beats. One Rhythm.' }}</em>
+      <span>
+        {%- if settings.social_instagram != blank -%}
+          <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram ↗</a>
+        {%- endif -%}
+      </span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline (italic)",
+      "default": "Three Beats. One Rhythm."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "team@irofit.fr"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Universe" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Stay in flow" },
+        { "type": "text", "id": "body", "label": "Body", "default": "First access. Quiet drops. Studio notes." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "menu" },
+        { "type": "menu" },
+        { "type": "newsletter" }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,127 @@
+{
+  "general": {
+    "meta": { "tags": "Tags: {{ tags }}", "page": "Page {{ page }}" },
+    "header": { "open_menu": "Open menu", "close_menu": "Close menu", "close": "Close" },
+    "search": { "title": "Search", "placeholder": "Search", "no_results": "No results for \"{{ terms }}\"." },
+    "newsletter": { "email_placeholder": "Your email", "submit": "Join", "success": "Thank you. We'll be in touch." },
+    "pagination": { "previous": "Previous", "next": "Next" },
+    "breadcrumb": { "home": "Home" },
+    "password_page": {
+      "opening_soon": "Arriving October 2026.",
+      "password_placeholder": "Password",
+      "submit": "Enter",
+      "admin_login": "Admin login"
+    },
+    "404": {
+      "message": "This page is off-rhythm. Let's get back in flow.",
+      "cta": "Back to home"
+    }
+  },
+  "sections": {
+    "announcement": { "label": "Announcement" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "choose_options": "Choose options",
+      "on_sale": "Sale",
+      "new": "New",
+      "best_seller": "Best",
+      "low_stock": "Low stock",
+      "media_gallery": "Product media"
+    }
+  },
+  "collections": {
+    "general": {
+      "items": "items",
+      "no_matches": "No matches. Adjust your filters.",
+      "view_all": "View all"
+    },
+    "sorting": { "title": "Sort" }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart",
+      "close": "Close",
+      "empty": "Your cart is empty.",
+      "continue_shopping": "Continue shopping",
+      "subtotal": "Subtotal",
+      "taxes_note": "Taxes included. Shipping at checkout.",
+      "checkout": "Checkout",
+      "update": "Update",
+      "upsells": "Complete the look"
+    },
+    "label": {
+      "product": "Product",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Account",
+      "welcome": "Hello {{ name }}.",
+      "logout": "Log out"
+    },
+    "orders": {
+      "title": "Orders",
+      "none": "No orders yet.",
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment",
+      "fulfillment_status": "Fulfillment",
+      "total": "Total"
+    },
+    "addresses": { "title": "Addresses", "manage": "Manage addresses" },
+    "order": {
+      "title": "Order {{ name }}",
+      "back": "Back to account",
+      "items": "Items",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total",
+      "shipping_address": "Shipping address",
+      "tracking": "Tracking"
+    },
+    "login": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot": "Forgot password",
+      "create": "Create an account"
+    },
+    "register": {
+      "title": "Create an account",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign up"
+    }
+  },
+  "blogs": {
+    "comments": {
+      "title": "Comments",
+      "name": "Name",
+      "message": "Message",
+      "submit": "Post"
+    }
+  },
+  "search": {
+    "title": "Search",
+    "title_with_terms": "{{ count }} results for \"{{ terms }}\"",
+    "no_results": "No results for \"{{ terms }}\".",
+    "placeholder": "Search"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "onboarding": {
+    "product_title": "Product name"
+  }
+}

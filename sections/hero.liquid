@@ -1,0 +1,102 @@
+{%- liquid
+  assign rotator_items = section.settings.meta_rotator | split: '|'
+-%}
+
+<section class="hero" aria-labelledby="hero-title">
+  {%- if section.settings.background_image != blank -%}
+    <div style="position:absolute;inset:0;z-index:-1;">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2400 }}"
+        srcset="{{ section.settings.background_image | image_url: width: 1200 }} 1200w, {{ section.settings.background_image | image_url: width: 2000 }} 2000w, {{ section.settings.background_image | image_url: width: 2800 }} 2800w"
+        sizes="100vw"
+        alt=""
+        class="img-cover"
+        width="2400" height="1400"
+        loading="eager"
+        style="height:100%;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(26,22,18,0.2), rgba(26,22,18,0.55));"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="container">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="eyebrow hero__eyebrow" data-animate>{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    <h1 id="hero-title" class="hero__title" data-animate style="--animate-delay:120ms;">
+      {{ section.settings.title }}
+    </h1>
+
+    {%- if section.settings.body != blank -%}
+      <p class="hero__body" data-animate style="--animate-delay:240ms;">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <p data-animate style="--animate-delay:360ms;margin-bottom:2.5rem;">
+        <a href="{{ section.settings.cta_link }}" class="btn">{{ section.settings.cta_label }} →</a>
+      </p>
+    {%- endif -%}
+
+    {%- if rotator_items.size > 0 -%}
+      <div class="hero__meta" data-hero-rotator data-animate style="--animate-delay:480ms;">
+        {%- for item in rotator_items -%}
+          <span class="hero__meta-item">{{ item | strip }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "A premium fitness lifestyle brand"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title (use <em> for italic words)",
+      "default": "<p>Her <em>Flow.</em> His <em>Fire.</em> Their <em>Joy.</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Three energies under one roof. Pieces designed for movement, breath, and play — for the people who carry the rhythm of the day."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Discover the universe"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    },
+    {
+      "type": "text",
+      "id": "meta_rotator",
+      "label": "Meta rotator (separate with |)",
+      "default": "EN → Arriving October 2026.|FR → Disponible Octobre 2026.|ES → Llegada Octubre 2026."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

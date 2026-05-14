@@ -1,0 +1,33 @@
+{
+  "settings": {
+    "brand": {
+      "header": "Brand",
+      "logo": "Logo",
+      "logo_width": "Logo width",
+      "use_wordmark": "Use typographic wordmark",
+      "use_wordmark_info": "IROfit in EB Garamond, italic on \"fit\".",
+      "favicon": "Favicon"
+    },
+    "colors": {
+      "header": "Colors",
+      "palette_header": "Main palette",
+      "scheme_default": "Default scheme"
+    },
+    "typography": {
+      "header": "Typography",
+      "display_header": "Display — EB Garamond",
+      "sans_header": "Sans — Inter"
+    },
+    "layout": { "header": "Layout" },
+    "header_behavior": {
+      "header": "Header behavior",
+      "sticky": "Sticky header",
+      "transparent_on_top": "Transparent over hero (homepage)"
+    },
+    "social": { "header": "Social" },
+    "cart": { "header": "Cart" },
+    "product": { "header": "Product" },
+    "seo": { "header": "SEO / JSON-LD" },
+    "motion": { "header": "Motion" }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "settings": {
+    "brand": {
+      "header": "Marca",
+      "logo": "Logo",
+      "logo_width": "Ancho del logo",
+      "use_wordmark": "Usar wordmark tipográfico",
+      "use_wordmark_info": "IROfit en EB Garamond, cursiva en «fit».",
+      "favicon": "Favicon"
+    },
+    "colors": {
+      "header": "Colores",
+      "palette_header": "Paleta principal",
+      "scheme_default": "Esquema por defecto"
+    },
+    "typography": {
+      "header": "Tipografía",
+      "display_header": "Display — EB Garamond",
+      "sans_header": "Sans — Inter"
+    },
+    "layout": { "header": "Diseño" },
+    "header_behavior": {
+      "header": "Header",
+      "sticky": "Header sticky",
+      "transparent_on_top": "Transparente sobre el hero"
+    },
+    "social": { "header": "Redes sociales" },
+    "cart": { "header": "Carrito" },
+    "product": { "header": "Producto" },
+    "seo": { "header": "SEO / JSON-LD" },
+    "motion": { "header": "Animaciones" }
+  }
+}

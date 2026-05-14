@@ -1,0 +1,20 @@
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign price = target.price | default: 0
+  assign compare = target.compare_at_price | default: 0
+  assign on_sale = false
+  if compare > price
+    assign on_sale = true
+  endif
+-%}
+<span class="price {% if on_sale %}price--sale{% endif %}">
+  {%- if on_sale -%}
+    <s class="muted">{{ compare | money }}</s>
+  {%- endif -%}
+  <span>{{ price | money }}</span>
+</span>

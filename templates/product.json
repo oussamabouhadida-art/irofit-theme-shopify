@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-main",
+      "settings": {
+        "show_related": true
+      },
+      "blocks": {
+        "details": {
+          "type": "meta",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Materials, finish, and care for this piece.</p>"
+          }
+        },
+        "shipping": {
+          "type": "meta",
+          "settings": {
+            "heading": "Shipping & returns",
+            "content": "<p>Free shipping in France over €80. 30-day returns.</p>"
+          }
+        },
+        "share": { "type": "share" }
+      },
+      "block_order": ["details", "shipping", "share"]
+    }
+  },
+  "order": ["main"]
+}

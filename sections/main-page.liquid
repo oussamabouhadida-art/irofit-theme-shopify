@@ -1,0 +1,15 @@
+{% render 'breadcrumb' %}
+
+<section class="container section" style="max-width:880px;">
+  <header style="margin-bottom:3rem;">
+    <p class="text-meta" style="margin-bottom:1rem;">PAGE — {{ page.title | upcase }}</p>
+    <h1 style="font-size:clamp(2.25rem,4vw,3.25rem);" data-animate>{{ page.title }}</h1>
+  </header>
+  <article class="rte" style="font-size:1.0625rem;line-height:1.8;color:rgba(245,240,235,0.85);">
+    {{ page.content }}
+  </article>
+</section>
+
+{% schema %}
+{ "name": "Page", "settings": [] }
+{% endschema %}

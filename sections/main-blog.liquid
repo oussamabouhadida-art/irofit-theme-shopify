@@ -1,0 +1,32 @@
+{% render 'breadcrumb' %}
+
+<section class="container section">
+  <header style="margin-bottom:3rem;">
+    <p class="text-meta" style="margin-bottom:1rem;">JOURNAL — IROfit</p>
+    <h1 style="font-size:clamp(2.25rem,4vw,3.25rem);" data-animate>{{ blog.title }}</h1>
+  </header>
+
+  {%- paginate blog.articles by 12 -%}
+    <div class="product-grid">
+      {%- for article in blog.articles -%}
+        <article class="product-card" data-animate>
+          <a href="{{ article.url }}" class="product-card__media aspect-portrait">
+            {%- if article.image -%}
+              <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}" loading="lazy" width="600" height="800">
+            {%- endif -%}
+          </a>
+          <div class="product-card__info">
+            <p class="text-meta">{{ article.published_at | date: '%d.%m.%Y' }}</p>
+            <h3 class="product-card__title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            <p class="muted" style="font-size:14px;">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {% render 'pagination', paginate: paginate %}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

@@ -1,0 +1,127 @@
+{
+  "general": {
+    "meta": { "tags": "Mots-clés : {{ tags }}", "page": "Page {{ page }}" },
+    "header": { "open_menu": "Ouvrir le menu", "close_menu": "Fermer le menu", "close": "Fermer" },
+    "search": { "title": "Recherche", "placeholder": "Rechercher", "no_results": "Aucun résultat pour « {{ terms }} »." },
+    "newsletter": { "email_placeholder": "Votre email", "submit": "Rejoindre", "success": "Merci. Bientôt en contact." },
+    "pagination": { "previous": "Précédent", "next": "Suivant" },
+    "breadcrumb": { "home": "Accueil" },
+    "password_page": {
+      "opening_soon": "Ouverture en octobre 2026.",
+      "password_placeholder": "Mot de passe",
+      "submit": "Entrer",
+      "admin_login": "Connexion administration"
+    },
+    "404": {
+      "message": "Cette page est hors-piste. Revenons en rythme.",
+      "cta": "Retour à l'accueil"
+    }
+  },
+  "sections": {
+    "announcement": { "label": "Annonces" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "Épuisé",
+      "unavailable": "Indisponible",
+      "choose_options": "Choisir les options",
+      "on_sale": "Promo",
+      "new": "Nouveau",
+      "best_seller": "Best",
+      "low_stock": "Stock bas",
+      "media_gallery": "Médias produit"
+    }
+  },
+  "collections": {
+    "general": {
+      "items": "pièces",
+      "no_matches": "Aucun résultat. Ajustez vos filtres.",
+      "view_all": "Voir tout"
+    },
+    "sorting": { "title": "Trier" }
+  },
+  "cart": {
+    "general": {
+      "title": "Panier",
+      "close": "Fermer",
+      "empty": "Votre panier est vide.",
+      "continue_shopping": "Continuer mes achats",
+      "subtotal": "Sous-total",
+      "taxes_note": "TVA incluse. Livraison calculée à l'étape suivante.",
+      "checkout": "Commander",
+      "update": "Mettre à jour",
+      "upsells": "Compléter le panier"
+    },
+    "label": {
+      "product": "Produit",
+      "price": "Prix",
+      "quantity": "Quantité",
+      "total": "Total"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Compte",
+      "welcome": "Bonjour {{ name }}.",
+      "logout": "Déconnexion"
+    },
+    "orders": {
+      "title": "Commandes",
+      "none": "Aucune commande pour l'instant.",
+      "order_number": "Numéro",
+      "date": "Date",
+      "payment_status": "Paiement",
+      "fulfillment_status": "Expédition",
+      "total": "Total"
+    },
+    "addresses": { "title": "Adresses", "manage": "Gérer les adresses" },
+    "order": {
+      "title": "Commande {{ name }}",
+      "back": "Retour au compte",
+      "items": "Articles",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "tax": "TVA",
+      "total": "Total",
+      "shipping_address": "Adresse de livraison",
+      "tracking": "Suivi"
+    },
+    "login": {
+      "title": "Connexion",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgot": "Mot de passe oublié",
+      "create": "Créer un compte"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "S'inscrire"
+    }
+  },
+  "blogs": {
+    "comments": {
+      "title": "Commentaires",
+      "name": "Nom",
+      "message": "Message",
+      "submit": "Publier"
+    }
+  },
+  "search": {
+    "title": "Recherche",
+    "title_with_terms": "{{ count }} résultats pour « {{ terms }} »",
+    "no_results": "Aucun résultat pour « {{ terms }} ».",
+    "placeholder": "Rechercher"
+  },
+  "accessibility": {
+    "skip_to_content": "Aller au contenu"
+  },
+  "onboarding": {
+    "product_title": "Nom du produit"
+  }
+}

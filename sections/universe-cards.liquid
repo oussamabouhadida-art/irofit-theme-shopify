@@ -1,0 +1,127 @@
+<section class="section">
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <header style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:3rem;">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 style="max-width:780px;" data-animate style="--animate-delay:80ms;">{{ section.settings.heading }}</h2>
+      </header>
+    {%- endif -%}
+
+    <div class="universe-cards">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign her = false
+          if block.settings.theme == 'her'
+            assign her = true
+          endif
+          assign delay = forloop.index0 | times: 120
+        -%}
+        <article class="universe-card {% if her %}universe-card--her{% endif %}" {{ block.shopify_attributes }}
+                 data-animate style="--animate-delay:{{ delay }}ms;">
+          <div class="universe-card__meta">
+            <span>{{ block.settings.meta_left }}</span>
+            <span>{{ block.settings.meta_right }}</span>
+          </div>
+          <div class="universe-card__word">{{ block.settings.word }}</div>
+          <div class="universe-card__tagline">{{ block.settings.tagline }}</div>
+          <p class="universe-card__body">{{ block.settings.body }}</p>
+          {%- if block.settings.pieces != blank -%}
+            <p class="universe-card__pieces">{{ block.settings.pieces }}</p>
+          {%- endif -%}
+          {%- if block.settings.palette != blank -%}
+            <div class="universe-card__palette" aria-hidden="true">
+              {%- assign hex_list = block.settings.palette | split: ',' -%}
+              {%- for hex in hex_list -%}
+                <span class="universe-card__swatch" style="background:{{ hex | strip }};"></span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- if block.settings.status != blank -%}
+            <p class="universe-card__status">{{ block.settings.status }}</p>
+          {%- endif -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" style="position:absolute;inset:0;" aria-label="{{ block.settings.word }}"></a>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Universe cards",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THREE — UNIVERSES" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>One brand, <em>three</em> rhythms.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "universe",
+      "name": "Universe",
+      "settings": [
+        { "type": "text", "id": "meta_left", "label": "Meta left", "default": "00 — IRO HER" },
+        { "type": "text", "id": "meta_right", "label": "Meta right", "default": "IROfit" },
+        { "type": "text", "id": "word", "label": "Word (italic)", "default": "Flow" },
+        { "type": "text", "id": "tagline", "label": "Tagline", "default": "Her Flow." },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Pilates, yoga, breath. Quiet pieces for movement that listens." },
+        { "type": "text", "id": "pieces", "label": "Pieces", "default": "Socks · Ring · Bands · Ball" },
+        { "type": "text", "id": "palette", "label": "Palette (hex, comma separated)", "default": "#F5F0EB,#2D4132,#807468" },
+        { "type": "text", "id": "status", "label": "Status", "default": "First drop · October 2026" },
+        {
+          "type": "select",
+          "id": "theme",
+          "label": "Card theme",
+          "options": [
+            { "value": "neutral", "label": "Neutral" },
+            { "value": "her", "label": "Her (forest tint)" }
+          ],
+          "default": "neutral"
+        },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Universe cards",
+      "blocks": [
+        {
+          "type": "universe",
+          "settings": {
+            "meta_left": "00 — IRO HER",
+            "word": "Flow",
+            "tagline": "Her Flow.",
+            "theme": "her",
+            "palette": "#F5F0EB,#2D4132,#807468"
+          }
+        },
+        {
+          "type": "universe",
+          "settings": {
+            "meta_left": "01 — IRO HIM",
+            "word": "Fire",
+            "tagline": "His Fire.",
+            "theme": "neutral",
+            "palette": "#1A1612,#3A332C,#F5F0EB"
+          }
+        },
+        {
+          "type": "universe",
+          "settings": {
+            "meta_left": "02 — IRO KIDS",
+            "word": "Joy",
+            "tagline": "Their Joy.",
+            "theme": "neutral",
+            "status": "Phase II · 2027",
+            "palette": "#F5F0EB,#2D4132,#3A332C"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

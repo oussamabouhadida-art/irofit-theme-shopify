@@ -1,0 +1,61 @@
+<div class="cart-overlay" data-cart-overlay aria-hidden="true"></div>
+<aside class="cart-drawer" data-cart-drawer aria-hidden="true" aria-label="Cart" data-free-shipping-threshold="{{ settings.cart_free_shipping_threshold }}">
+  <header class="cart-drawer__head">
+    <h2 class="cart-drawer__title">{{ 'cart.general.title' | t }}</h2>
+    <button type="button" class="link-inline" data-cart-close aria-label="{{ 'cart.general.close' | t }}">
+      {{ 'cart.general.close' | t }} ×
+    </button>
+  </header>
+
+  <div class="cart-drawer__items" data-cart-items aria-live="polite"></div>
+
+  <div class="cart-drawer__empty" data-cart-empty style="display:none;">
+    <p class="text-meta" style="margin-bottom:1.5rem;">{{ 'cart.general.empty' | t }}</p>
+    <a href="{{ routes.all_products_collection_url }}" class="btn">{{ 'cart.general.continue_shopping' | t }} →</a>
+  </div>
+
+  {%- if settings.cart_show_shipping_estimate -%}
+    <div class="cart-drawer__shipping">
+      <p class="text-meta" data-cart-shipping-msg></p>
+      <div class="cart-shipping-bar">
+        <div class="cart-shipping-bar__fill" data-cart-shipping-bar style="width:0%;"></div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if settings.cart_show_upsells -%}
+    {%- assign upsell_handle = 'cart-upsell' -%}
+    {%- assign upsell_collection = collections[upsell_handle] -%}
+    {%- if upsell_collection.products.size > 0 -%}
+      <div class="cart-drawer__upsells">
+        <p class="text-meta" style="margin-bottom:0.75rem;">{{ 'cart.general.upsells' | t }}</p>
+        {%- for prod in upsell_collection.products limit: 2 -%}
+          <article class="cart-drawer__upsell">
+            <a href="{{ prod.url }}" aria-label="{{ prod.title }}">
+              <img src="{{ prod.featured_media | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
+            </a>
+            <div>
+              <h4 style="font-family:var(--font-display);font-size:14px;">{{ prod.title }}</h4>
+              <span class="text-meta">{{ prod.price | money }}</span>
+            </div>
+            <form method="post" action="{{ routes.cart_add_url }}">
+              <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
+              <button type="submit" class="btn" style="padding:0.5rem 0.75rem;font-size:10px;">+</button>
+            </form>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <footer class="cart-drawer__foot" data-cart-foot style="display:none;">
+    <div class="cart-drawer__totals">
+      <span class="text-meta">{{ 'cart.general.subtotal' | t }}</span>
+      <strong data-cart-total>{{ cart.total_price | money }}</strong>
+    </div>
+    <p class="text-meta" style="font-size:10px;">{{ 'cart.general.taxes_note' | t }}</p>
+    <a href="{{ routes.cart_url }}/checkout" class="btn btn--filled btn--block">
+      {{ 'cart.general.checkout' | t }} →
+    </a>
+  </footer>
+</aside>

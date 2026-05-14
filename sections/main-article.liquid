@@ -1,0 +1,65 @@
+{% render 'breadcrumb' %}
+
+<article class="container section" style="max-width:740px;">
+  <header style="margin-bottom:2.5rem;">
+    <p class="text-meta" style="margin-bottom:1rem;">{{ article.published_at | date: '%d %B %Y' | upcase }}</p>
+    <h1 style="font-size:clamp(2.25rem,4.5vw,3.5rem);line-height:1.1;" data-animate>{{ article.title }}</h1>
+    <p class="muted" style="margin-top:1rem;font-size:14px;">By {{ article.author }}</p>
+  </header>
+
+  {%- if article.image -%}
+    <img src="{{ article.image | image_url: width: 1600 }}" alt="{{ article.title | escape }}" style="width:100%;margin-bottom:3rem;" width="1600" height="900" loading="eager">
+  {%- endif -%}
+
+  <div class="rte" style="font-size:1.0625rem;line-height:1.8;color:rgba(245,240,235,0.85);">
+    {{ article.content }}
+  </div>
+
+  {%- if blog.comments_enabled? -%}
+    <section class="account__section" style="margin-top:4rem;">
+      <h3>{{ 'blogs.comments.title' | t }}</h3>
+      {%- for comment in article.comments -%}
+        <article style="padding:1.5rem 0;border-top:var(--hairline);">
+          <p>{{ comment.content }}</p>
+          <p class="text-meta" style="margin-top:0.5rem;">— {{ comment.author }} · {{ comment.created_at | date: '%d.%m.%Y' }}</p>
+        </article>
+      {%- endfor -%}
+      {% form 'new_comment', article %}
+        {{ form.errors | default_errors }}
+        <div class="field" style="margin-bottom:1rem;">
+          <label class="field__label" for="comment_author">{{ 'blogs.comments.name' | t }}</label>
+          <input type="text" id="comment_author" name="comment[author]" required class="input">
+        </div>
+        <div class="field" style="margin-bottom:1rem;">
+          <label class="field__label" for="comment_email">Email</label>
+          <input type="email" id="comment_email" name="comment[email]" required class="input">
+        </div>
+        <div class="field" style="margin-bottom:1.5rem;">
+          <label class="field__label" for="comment_body">{{ 'blogs.comments.message' | t }}</label>
+          <textarea id="comment_body" name="comment[body]" required class="input" rows="4" style="resize:vertical;"></textarea>
+        </div>
+        <button type="submit" class="btn">{{ 'blogs.comments.submit' | t }} →</button>
+      {% endform %}
+    </section>
+  {%- endif -%}
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "author": { "@type": "Person", "name": {{ article.author | json }} },
+  {%- if article.image -%}"image": [{{ article.image | image_url: width: 1600 | prepend: 'https:' | json }}],{%- endif -%}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {%- if settings.organization_logo != blank -%}"logo": { "@type": "ImageObject", "url": {{ settings.organization_logo | image_url: width: 600 | prepend: 'https:' | json }} }{%- endif -%}
+  }
+}
+</script>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

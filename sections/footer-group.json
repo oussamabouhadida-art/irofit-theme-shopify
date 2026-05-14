@@ -1,0 +1,32 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "Three Beats. One Rhythm.",
+        "email": "team@irofit.fr"
+      },
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": { "heading": "Shop", "menu": "footer" }
+        },
+        "about": {
+          "type": "menu",
+          "settings": { "heading": "About", "menu": "footer" }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Stay in flow",
+            "body": "First access. Quiet drops. Studio notes."
+          }
+        }
+      },
+      "block_order": ["shop", "about", "newsletter"]
+    }
+  },
+  "order": ["footer"]
+}

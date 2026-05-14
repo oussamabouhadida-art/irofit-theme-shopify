@@ -1,0 +1,40 @@
+{
+  "current": {
+    "logo_width": 100,
+    "use_wordmark": true,
+    "color_ink": "#1A1612",
+    "color_cream": "#F5F0EB",
+    "color_cream_2": "#EFE7DE",
+    "color_forest": "#2D4132",
+    "color_ash": "#807468",
+    "color_charcoal": "#3A332C",
+    "color_scheme_default": "dark",
+    "type_base_size": 16,
+    "type_heading_scale": 100,
+    "container_max_width": 1400,
+    "edge_padding_mobile": 24,
+    "edge_padding_desktop": 40,
+    "sticky_header": true,
+    "header_transparent_on_top": true,
+    "social_instagram": "https://instagram.com/iro.fit",
+    "cart_type": "drawer",
+    "cart_show_upsells": true,
+    "cart_show_shipping_estimate": true,
+    "cart_free_shipping_threshold": 80,
+    "product_badges_enabled": true,
+    "low_stock_threshold": 5,
+    "product_quick_add": true,
+    "organization_name": "IROfit",
+    "organization_legal_name": "IROfit",
+    "motion_enabled": true,
+    "motion_duration_micro": 500,
+    "motion_duration_hero": 850
+  },
+  "presets": {
+    "Default": {
+      "color_ink": "#1A1612",
+      "color_cream": "#F5F0EB",
+      "color_scheme_default": "dark"
+    }
+  }
+}

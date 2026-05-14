@@ -1,0 +1,46 @@
+<section class="section">
+  <div class="container">
+    <div class="editorial {% if section.settings.flipped %}editorial--flipped{% endif %}">
+      <div data-animate>
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 1200 }} 1200w"
+            sizes="(min-width: 768px) 50vw, 100vw"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="1200"
+            height="1500"
+            loading="lazy">
+        {%- endif -%}
+      </div>
+      <div data-animate style="--animate-delay:120ms;">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" style="margin-bottom:1.5rem;">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="editorial__title">{{ section.settings.heading }}</h2>
+        <div class="editorial__body">{{ section.settings.body }}</div>
+        {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="link-inline">{{ section.settings.cta_label }} →</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "ABOUT — THE STORY" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>A studio for movement — <em>and breath</em>.</p>" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>IROfit was born between Paris and the sea. Three energies — soft, strong, joyful — under one quiet wordmark.</p>" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Read the story" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" },
+    { "type": "checkbox", "id": "flipped", "label": "Flip layout", "default": false }
+  ],
+  "presets": [
+    { "name": "Editorial", "category": "Story" }
+  ]
+}
+{% endschema %}

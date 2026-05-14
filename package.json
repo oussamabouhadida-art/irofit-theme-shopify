@@ -1,0 +1,14 @@
+{
+  "name": "irofit-theme",
+  "version": "1.0.0",
+  "description": "Premium Shopify Online Store 2.0 theme for IROfit — Three Beats. One Rhythm.",
+  "author": "IROfit <team@irofit.fr>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "shopify theme dev",
+    "push": "shopify theme push",
+    "pull": "shopify theme pull",
+    "check": "shopify theme check"
+  }
+}

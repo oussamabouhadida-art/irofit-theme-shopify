@@ -1,0 +1,71 @@
+<section class="container section">
+  <div class="account">
+    <p class="text-meta" style="margin-bottom:1rem;">
+      <a href="{{ routes.account_url }}">← {{ 'customer.order.back' | t }}</a>
+    </p>
+    <h1 class="account__title">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    <p class="muted">{{ order.created_at | date: '%d %B %Y' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+
+    <section class="account__section">
+      <h3>{{ 'customer.order.items' | t }}</h3>
+      <table class="account__orders">
+        <thead>
+          <tr>
+            <th>{{ 'cart.label.product' | t }}</th>
+            <th>{{ 'cart.label.price' | t }}</th>
+            <th>{{ 'cart.label.quantity' | t }}</th>
+            <th style="text-align:right;">{{ 'cart.label.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for line in order.line_items -%}
+            <tr>
+              <td>
+                <a href="{{ line.product.url }}" style="font-family:var(--font-display);">{{ line.title }}</a>
+              </td>
+              <td>{{ line.price | money }}</td>
+              <td>{{ line.quantity }}</td>
+              <td style="text-align:right;">{{ line.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div style="margin-top:2rem;display:flex;justify-content:flex-end;gap:2rem;font-size:14px;">
+        <div style="text-align:right;line-height:1.8;">
+          <div>{{ 'customer.order.subtotal' | t }} <strong style="margin-left:1rem;">{{ order.subtotal_price | money }}</strong></div>
+          <div>{{ 'customer.order.shipping' | t }} <strong style="margin-left:1rem;">{{ order.shipping_price | money }}</strong></div>
+          <div>{{ 'customer.order.tax' | t }} <strong style="margin-left:1rem;">{{ order.tax_price | money }}</strong></div>
+          <div style="font-size:1.125rem;margin-top:0.5rem;">
+            {{ 'customer.order.total' | t }} <strong style="margin-left:1rem;">{{ order.total_price | money }}</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {%- if order.shipping_address -%}
+      <section class="account__section">
+        <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+        <address style="font-style:normal;line-height:1.7;">
+          {{ order.shipping_address | format_address }}
+        </address>
+      </section>
+    {%- endif -%}
+
+    {%- if order.fulfillments.size > 0 -%}
+      <section class="account__section">
+        <h3>{{ 'customer.order.tracking' | t }}</h3>
+        {%- for f in order.fulfillments -%}
+          <p>
+            {{ f.tracking_company }}
+            {%- if f.tracking_url -%} · <a href="{{ f.tracking_url }}" class="link-inline" target="_blank" rel="noopener">{{ f.tracking_number }} ↗</a>{%- endif -%}
+          </p>
+        {%- endfor -%}
+      </section>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Order", "settings": [] }
+{% endschema %}
