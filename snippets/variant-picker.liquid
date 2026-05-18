@@ -18,6 +18,20 @@
           {%- for value in option.values -%}
             {%- assign checked = false -%}
             {%- if option.selected_value == value -%}{%- assign checked = true -%}{%- endif -%}
+            {%- liquid
+              assign vlow = value | downcase | strip
+              assign hex = '#807468'
+              case vlow
+                when 'cream' then assign hex = '#F5F0EB'
+                when 'cream 2' then assign hex = '#EFE7DE'
+                when 'forest' then assign hex = '#2D4132'
+                when 'ash' then assign hex = '#807468'
+                when 'charcoal' then assign hex = '#3A332C'
+                when 'ink' then assign hex = '#1A1612'
+                when 'black' then assign hex = '#1A1612'
+                when 'white' then assign hex = '#F5F0EB'
+              endcase
+            -%}
             <button
               type="button"
               class="variant-swatch"
@@ -27,7 +41,7 @@
               aria-checked="{{ checked }}"
               aria-label="{{ option.name }}: {{ value }}"
               title="{{ value }}"
-              style="background:{{ value | handle }};">
+              style="background:{{ hex }};">
             </button>
           {%- endfor -%}
         </div>

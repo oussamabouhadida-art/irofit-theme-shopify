@@ -44,7 +44,7 @@
       {%- if color_option -%}
         <div class="product-card__swatches" aria-label="Available colors">
           {%- for value in color_option.values limit: 5 -%}
-            <span class="product-card__swatch" style="background:{{ value | handle }};" title="{{ value }}"></span>
+            {% render 'color-swatch', value: value, size: 14, klass: 'product-card__swatch' %}
           {%- endfor -%}
         </div>
       {%- endif -%}
