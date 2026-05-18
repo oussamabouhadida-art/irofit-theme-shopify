@@ -11,6 +11,13 @@
             width="1200"
             height="1500"
             loading="lazy">
+        {%- elsif section.settings.image_url != blank -%}
+          <img
+            src="{{ section.settings.image_url }}"
+            alt=""
+            width="1200"
+            height="1500"
+            loading="lazy">
         {%- endif -%}
       </div>
       <div data-animate style="--animate-delay:120ms;">
@@ -31,7 +38,8 @@
 {
   "name": "Editorial",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image (uploaded)" },
+    { "type": "text", "id": "image_url", "label": "Image URL (fallback)", "info": "Used only if no uploaded image." },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "ABOUT — THE STORY" },
     { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>A studio for movement — <em>and breath</em>.</p>" },
     { "type": "richtext", "id": "body", "label": "Body", "default": "<p>IROfit was born between Paris and the sea. Three energies — soft, strong, joyful — under one quiet wordmark.</p>" },

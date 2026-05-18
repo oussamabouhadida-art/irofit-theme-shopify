@@ -7,7 +7,9 @@
         "title": "<p>Her <em>Flow.</em> His <em>Fire.</em> Their <em>Joy.</em></p>",
         "body": "Three energies under one roof. Pieces designed for movement, breath, and play — for the people who carry the rhythm of the day.",
         "cta_label": "Discover the universe",
-        "meta_rotator": "EN → Arriving October 2026.|FR → Disponible Octobre 2026.|ES → Llegada Octubre 2026."
+        "cta_link": "/collections/iro-her-first-drop",
+        "meta_rotator": "EN → Arriving October 2026.|FR → Disponible Octobre 2026.|ES → Llegada Octubre 2026.",
+        "background_image_url": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=2400&q=85&fm=jpg"
       }
     },
     "universes": {
@@ -67,6 +69,7 @@
       "settings": {
         "eyebrow": "FIRST DROP — IRO HER",
         "heading": "<p>Quiet <em>essentials</em>.</p>",
+        "collection": "iro-her-first-drop",
         "limit": 8
       }
     },
@@ -77,6 +80,8 @@
         "heading": "<p>A studio for movement — <em>and breath</em>.</p>",
         "body": "<p>IROfit was born between Paris and the sea. Three energies — soft, strong, joyful — under one quiet wordmark.</p>",
         "cta_label": "Read the story",
+        "cta_link": "/pages/about",
+        "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=85&fm=jpg",
         "flipped": false
       }
     },
@@ -84,7 +89,8 @@
       "type": "lookbook",
       "settings": {
         "eyebrow": "EDITORIAL — SHOPPABLE",
-        "heading": "<p>The look, <em>tapped</em>.</p>"
+        "heading": "<p>The look, <em>tapped</em>.</p>",
+        "image_url": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=2400&q=85&fm=jpg"
       }
     },
     "testimonials": {

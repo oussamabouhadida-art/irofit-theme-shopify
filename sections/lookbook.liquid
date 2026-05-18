@@ -7,17 +7,26 @@
       <h2 data-animate style="--animate-delay:80ms;">{{ section.settings.heading }}</h2>
     </header>
 
-    {%- if section.settings.image != blank -%}
+    {%- if section.settings.image != blank or section.settings.image_url != blank -%}
       <div class="lookbook" data-animate>
         <div class="lookbook__image">
-          <img
-            src="{{ section.settings.image | image_url: width: 2000 }}"
-            srcset="{{ section.settings.image | image_url: width: 1200 }} 1200w, {{ section.settings.image | image_url: width: 2000 }} 2000w"
-            sizes="100vw"
-            alt="{{ section.settings.image.alt | escape }}"
-            width="2000"
-            height="1300"
-            loading="lazy">
+          {%- if section.settings.image != blank -%}
+            <img
+              src="{{ section.settings.image | image_url: width: 2000 }}"
+              srcset="{{ section.settings.image | image_url: width: 1200 }} 1200w, {{ section.settings.image | image_url: width: 2000 }} 2000w"
+              sizes="100vw"
+              alt="{{ section.settings.image.alt | escape }}"
+              width="2000"
+              height="1300"
+              loading="lazy">
+          {%- else -%}
+            <img
+              src="{{ section.settings.image_url }}"
+              alt=""
+              width="2000"
+              height="1300"
+              loading="lazy">
+          {%- endif -%}
 
           {%- for block in section.blocks -%}
             {%- if block.settings.product != blank -%}
@@ -58,7 +67,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "EDITORIAL — SHOPPABLE" },
     { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>The look, <em>tapped</em>.</p>" },
-    { "type": "image_picker", "id": "image", "label": "Image" }
+    { "type": "image_picker", "id": "image", "label": "Image (uploaded)" },
+    { "type": "text", "id": "image_url", "label": "Image URL (fallback)", "info": "Used only if no uploaded image." }
   ],
   "blocks": [
     {
